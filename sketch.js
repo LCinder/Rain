@@ -44,8 +44,23 @@ function setup() {
 	valorAnterior = slider.value();
 }
 
+
+function gradiente(x, y, w, h, c1, c2) {
+	for (let i=x; i < x + w; i++) {
+		let inter = map(i, x, x+w, 0, 1);
+		let c = lerpColor(c1, c2, inter);
+		stroke(c);
+		line(i, y, i, y+h);
+	}
+}
+
 function draw() {
 	background(150);
+
+	gradiente(0, 0, width/2, height, color(50), color(255));
+	gradiente(width/2, 0, width/2, height, color(255), color(50));
+
+
 	text("Nº Gotas", window.width-160, 20);
 
 	if(slider.value() == valorAnterior) {
